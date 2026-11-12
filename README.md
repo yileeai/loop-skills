@@ -20,7 +20,7 @@
 
 输出也是原料：每一份诊断、每一条内容定稿后都回流成观点、打法、案例，库越用越厚。
 
-## 8 个技能
+## 9 个技能
 
 | 指令 | 你交给它 | 它替你完成 |
 |---|---|---|
@@ -32,6 +32,7 @@
 | `/loopback` | 一份定稿成果 | 列出可回流的观点、打法、方法，你勾选后写回知识库 |
 | `/content` | 一个主题，或「从问题库选」 | 按你的获客内容结构写小红书 / 视频号 / 公众号，配 AI 画面提示词 |
 | `/diagram-design` | 要画的东西 | 45 种品牌图解（循环图、四象限、漏斗、流程图……），输出 HTML + PNG |
+| `/speech-motion-edit` | 一条对标短视频 + 你的口播原素材 | 拆解对标的构图和节奏，按口播逐字时间码做竖屏动效：信息卡逐层展开、连线生长、数字滚动、关键词高亮字幕；可整片变速 |
 
 几条贯穿所有技能的规矩：
 
@@ -63,7 +64,7 @@ bash loop-skills/install.sh ~/Obsidian/根据地
 安装脚本做两件事：
 
 1. 把 `vault-template/` 的目录骨架、模板、地图页补进你的库，**已有文件一律不覆盖**。
-2. 把 8 个技能复制到库里的 `_claude-skills/`（安装包）和 `.claude/skills/`（Claude Code 读取）。
+2. 把 9 个技能复制到库里的 `_claude-skills/`（安装包）和 `.claude/skills/`（Claude Code 读取）。
 
 ## 装好后先做三件事
 
@@ -71,13 +72,15 @@ bash loop-skills/install.sh ~/Obsidian/根据地
 2. **改 `20-Wiki 知识/主题地图/知识蓝图.md`**：把「行业 × 业务环节」矩阵换成你的行业。这张图决定库往哪长。
 3. **改 `90-System 系统/LOOP品牌手册.md`**：换成你的品牌名、强调色和固定口播（文件名保持不变）。
 
+做视频（`/speech-motion-edit`）还需要 Python 3、[Pillow](https://pypi.org/project/pillow/) ≥ 10 和 [FFmpeg](https://ffmpeg.org)；没有文字稿时用 faster-whisper 转录，安装说明见技能里的 `references/production.md`。视频成品别放进知识库，放本地素材盘。
+
 然后丢一篇文章进 `10-Raw 原料/01-文章剪藏/`，在库目录里打开 Claude Code，输入 `/ingest`。
 
 ## 目录
 
 ```
 loop-skills/
-├── skills/            8 个技能
+├── skills/            9 个技能
 └── vault-template/    知识库骨架（目录说明、模板、地图页、CLAUDE.md、AGENTS.md）
 ```
 

@@ -10,5 +10,5 @@ cp -Rn "$HERE/vault-template/." "$VAULT/"
 # 2) 技能：安装包放 _claude-skills，Claude Code 读取 .claude/skills
 cp -R "$HERE/skills/." "$VAULT/_claude-skills/"
 cp -R "$HERE/skills/." "$VAULT/.claude/skills/"
-echo "完成：8 个技能已安装到 $VAULT"
+echo "完成：9 个技能已安装到 $VAULT"
 echo "下一步：打开 CLAUDE.md 和 20-Wiki 知识/主题地图/知识蓝图.md，把「改成你的」换成你自己的内容。"
