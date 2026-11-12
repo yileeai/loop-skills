@@ -12,7 +12,7 @@ rem 2) skills: _claude-skills = install package, .claude\skills = read by Claude
 robocopy "%~dp0skills" "%VAULT%\_claude-skills" /E /NFL /NDL /NJH /NJS >nul
 robocopy "%~dp0skills" "%VAULT%\.claude\skills" /E /NFL /NDL /NJH /NJS >nul
 echo.
-echo Done: 9 skills installed to %VAULT%
+echo Done: 8 skills installed to %VAULT%
 echo Next: edit CLAUDE.md and 20-Wiki\...\knowledge blueprint (see README).
 endlocal
 exit /b 0

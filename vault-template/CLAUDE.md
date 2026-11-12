@@ -5,7 +5,7 @@
 
 ## 0. 首次启动自检
 
-如果本库根目录下还没有 `.claude/skills/` 文件夹（或缺少其中的 ingest、query、lint、checkup、replay、content、loopback、diagram-design、speech-motion-edit），先把 `_claude-skills/` 下的全部子文件夹**原样复制**到 `.claude/skills/`，然后告诉主人"技能已安装，重启对话后可用 /ingest 等指令"。`_claude-skills/` 是技能的安装包，不要删除。
+如果本库根目录下还没有 `.claude/skills/` 文件夹（或缺少其中的 ingest、query、lint、checkup、replay、content、loopback、diagram-design），先把 `_claude-skills/` 下的全部子文件夹**原样复制**到 `.claude/skills/`，然后告诉主人"技能已安装，重启对话后可用 /ingest 等指令"。`_claude-skills/` 是技能的安装包，不要删除。
 
 ## 1. 语言与角色
 
@@ -174,7 +174,6 @@ rank:                     # 1-5，重要程度（可空）
 | `/loopback <成果文件>` | 成果回流：定稿的课纲、报告、内容 → 列候选 → 主人勾选 → 沉淀观点 / 打法 / 方法 |
 | `/content <主题或"从问题库选">` | 用问题库 + 观点 + 案例，按主人的获客内容结构写内容 |
 | `/diagram-design <要画什么>` | 知识可视化：把知识页、打法、诊断结论画成品牌图解，存到 `90-System 系统/视觉素材/图解/`。第三方开源技能（MIT），已加中文和品牌规则 |
-| `/speech-motion-edit <需求>` | 口播动效混剪：拆解对标短视频，按旁白时间码做竖屏代码动效（信息卡逐层展开、连线生长、数字滚动、字幕高亮），可对成片同步变速。视频成品放库外。Windows 运行黑金模板需加 `--font C:/Windows/Fonts/msyhbd.ttc` |
 
 主人用自然语言提出同类请求时（如"把这篇文章收进知识库""帮我复盘今天和王总的沟通"），也按对应技能执行。
 
