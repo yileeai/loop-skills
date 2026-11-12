@@ -1,6 +1,6 @@
 # LOOP Skills · AI 咨询师的「根据地」
 
-> 作者：[易立 Yilee](https://github.com/yileeai) · AI 咨询师 · LOOP AI 获客
+> 作者：[易里 Yilee](https://github.com/yileeai) · AI 咨询师 · LOOP AI 获客
 
 把碎片素材编译成会生长的知识库，再用它**诊断客户、复盘咨询、生产获客内容**。
 一套 Claude Code 技能 + 一个 Obsidian 知识库骨架，从一位 AI 咨询师的真实工作里长出来。
