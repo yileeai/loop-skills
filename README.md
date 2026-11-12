@@ -1,4 +1,4 @@
-# LOOP Skills · AI 咨询师的「根据地」
+# LOOP Skills · 咨询师的 AI「根据地」
 
 > 作者：[易里 Yilee](https://github.com/yileeai) · AI 咨询师 · LOOP AI 获客
 
