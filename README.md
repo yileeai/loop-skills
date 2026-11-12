@@ -88,10 +88,10 @@ loop-skills/
 本仓库的技能与模板采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)，全文见 [LICENSE](LICENSE)：
 
 - ✅ 可以免费学习、使用，按自己的行业随意修改；
-- ✅ 转载或分享改编版时，注明出处「易立 Yilee · LOOP」并附本仓库链接；
+- ✅ 转载或分享改编版时，注明出处「易里 Yilee · LOOP」并附本仓库链接；
 - ❌ 不得商用：不能打包售卖，也不能放进付费课程、付费社群或付费咨询交付；
 - 🔁 改编后公开的版本，也必须用同样的协议。
 
-**商业合作或授权**：欢迎联系 [易立 Yilee](https://github.com/yileeai)。
+**商业合作或授权**：欢迎联系 [易里 Yilee](https://github.com/yileeai)。
 
 例外：`skills/diagram-design` 改编自 [cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design)，沿用原 MIT 许可，改动说明见 [NOTICE](skills/diagram-design/NOTICE.md)。
