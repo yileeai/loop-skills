@@ -1,0 +1,117 @@
+filters:
+  and:
+    - '!file.name.startsWith("_")'
+    - file.ext == "md"
+formulas:
+  图标: if(file.inFolder("30-Action 行动/责任领域"), "🌋", if(file.inFolder("30-Action 行动/客户档案"), "🤝", if(file.inFolder("30-Action 行动/项目管理"), "⚗️", if(file.inFolder("30-Action 行动/工作成果/内容作品"), "✍️", if(file.inFolder("30-Action 行动/工作成果/咨询交付"), "📑", if(file.inFolder("30-Action 行动/工作成果"), "🎨", ""))))))
+  上级文件夹: file.folder.split("/")[-1]
+properties:
+  formula.图标:
+    displayName: " "
+  WIPstatus:
+    displayName: 状态
+  platform:
+    displayName: 平台
+  published:
+    displayName: 发布日期
+views:
+  - type: table
+    name: 按优先级
+    filters:
+      and:
+        - file.inFolder("30-Action 行动")
+        - '!file.inFolder("30-Action 行动/客户档案")'
+    order:
+      - formula.图标
+      - file.name
+      - rank
+      - formula.上级文件夹
+      - file.mtime
+    sort:
+      - property: rank
+        direction: DESC
+      - property: file.mtime
+        direction: DESC
+    limit: 50
+  - type: table
+    name: 责任领域
+    filters:
+      and:
+        - file.inFolder("30-Action 行动/责任领域")
+    order:
+      - file.name
+      - rank
+      - related
+    sort:
+      - property: rank
+        direction: DESC
+  - type: table
+    name: 项目
+    filters:
+      and:
+        - file.inFolder("30-Action 行动/项目管理")
+    groupBy:
+      property: formula.上级文件夹
+      direction: ASC
+    order:
+      - file.name
+      - rank
+      - related
+      - file.mtime
+    sort:
+      - property: rank
+        direction: DESC
+  - type: table
+    name: 内容作品
+    filters:
+      and:
+        - file.inFolder("30-Action 行动/工作成果/内容作品")
+    groupBy:
+      property: WIPstatus
+      direction: ASC
+    order:
+      - file.name
+      - platform
+      - WIPstatus
+      - published
+      - created
+    sort:
+      - property: created
+        direction: DESC
+  - type: table
+    name: 咨询交付
+    filters:
+      and:
+        - file.inFolder("30-Action 行动/工作成果/咨询交付")
+    order:
+      - file.name
+      - client
+      - WIPstatus
+      - created
+    sort:
+      - property: created
+        direction: DESC
+  - type: table
+    name: 产品SOP
+    filters:
+      and:
+        - file.inFolder("30-Action 行动/工作成果/产品SOP")
+    order:
+      - file.name
+      - WIPstatus
+      - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC
+  - type: table
+    name: 提示词库
+    filters:
+      and:
+        - file.inFolder("90-System 系统/提示词库")
+    order:
+      - file.name
+      - tags
+      - related
+    sort:
+      - property: file.name
+        direction: ASC

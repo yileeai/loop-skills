@@ -1,0 +1,80 @@
+filters:
+  and:
+    - file.inFolder("30-Action 行动/客户档案")
+    - '!file.name.startsWith("_")'
+formulas:
+  跟进日: if(next_followup.isType("date"), next_followup, if(next_followup.isType("string") && next_followup != "", date(next_followup), null))
+  距跟进天数: if(formula.跟进日, (formula.跟进日 - today()).days, "")
+  阶段序: if(stage == "线索", 1, if(stage == "诊断中", 2, if(stage == "方案", 3, if(stage == "交付中", 4, if(stage == "已成交", 5, if(stage == "复购", 6, if(stage == "流失", 9, 0)))))))
+properties:
+  stage:
+    displayName: 阶段
+  industry:
+    displayName: 行业
+  next_followup:
+    displayName: 下次跟进
+  budget:
+    displayName: 预算
+  source:
+    displayName: 来源
+  last_updated:
+    displayName: 更新
+  formula.距跟进天数:
+    displayName: 距跟进(天)
+views:
+  - type: table
+    name: 客户看板
+    groupBy:
+      property: stage
+      direction: ASC
+    order:
+      - file.name
+      - industry
+      - next_followup
+      - formula.距跟进天数
+      - budget
+      - source
+      - last_updated
+    sort:
+      - property: formula.阶段序
+        direction: ASC
+      - property: next_followup
+        direction: ASC
+  - type: table
+    name: 待跟进
+    filters:
+      and:
+        - formula.跟进日 && formula.跟进日 <= today()
+        - stage != "已成交"
+        - stage != "流失"
+    order:
+      - file.name
+      - stage
+      - next_followup
+      - industry
+    sort:
+      - property: next_followup
+        direction: ASC
+  - type: table
+    name: 按行业
+    groupBy:
+      property: industry
+      direction: ASC
+    order:
+      - file.name
+      - stage
+      - next_followup
+      - budget
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: cards
+    name: 卡片
+    order:
+      - file.name
+      - stage
+      - industry
+      - next_followup
+    sort:
+      - property: next_followup
+        direction: ASC

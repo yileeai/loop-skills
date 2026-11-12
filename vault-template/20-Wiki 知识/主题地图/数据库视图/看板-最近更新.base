@@ -1,0 +1,18 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - '!file.name.startsWith("_")'
+    - '!file.inFolder("90-System 系统/模板中心")'
+formulas:
+  上级文件夹: file.folder.split("/")[-1]
+views:
+  - type: table
+    name: 最近更新
+    order:
+      - file.name
+      - formula.上级文件夹
+      - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC
+    limit: 50

@@ -1,0 +1,57 @@
+filters:
+  and:
+    - file.inFolder("40-Review 复盘")
+    - '!file.name.startsWith("_")'
+formulas:
+  类型: if(file.inFolder("40-Review 复盘/咨询记录"), "☎️ 咨询", if(file.inFolder("40-Review 复盘/定期复盘"), "🔍 复盘", "— 日记"))
+properties:
+  client:
+    displayName: 客户
+views:
+  - type: table
+    name: 全部时间记录
+    order:
+      - formula.类型
+      - file.name
+      - client
+      - created
+    sort:
+      - property: file.name
+        direction: DESC
+    limit: 60
+  - type: table
+    name: 每日笔记
+    filters:
+      and:
+        - file.inFolder("40-Review 复盘/每日笔记")
+    order:
+      - file.name
+      - created
+    sort:
+      - property: file.name
+        direction: DESC
+    limit: 60
+  - type: table
+    name: 咨询记录
+    filters:
+      and:
+        - file.inFolder("40-Review 复盘/咨询记录")
+    order:
+      - file.name
+      - client
+      - date
+      - duration
+    sort:
+      - property: file.name
+        direction: DESC
+  - type: table
+    name: 定期复盘
+    filters:
+      and:
+        - file.inFolder("40-Review 复盘/定期复盘")
+    order:
+      - file.name
+      - created
+    sort:
+      - property: file.name
+        direction: DESC

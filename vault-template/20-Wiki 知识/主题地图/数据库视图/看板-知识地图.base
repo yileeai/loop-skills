@@ -1,0 +1,191 @@
+filters:
+  and:
+    - file.inFolder("20-Wiki 知识")
+    - '!file.inFolder("20-Wiki 知识/主题地图/数据库视图")'
+    - '!file.name.startsWith("_")'
+    - file.ext == "md"
+formulas:
+  图标: if(file.inFolder("20-Wiki 知识/知识节点/概念方法"), "🧩", if(file.inFolder("20-Wiki 知识/知识节点/AI工具"), "🤖", if(file.inFolder("20-Wiki 知识/知识节点/人物机构"), "👤", if(file.inFolder("20-Wiki 知识/知识节点/行业"), "🏭", if(file.inFolder("20-Wiki 知识/知识节点/问题"), "❓", if(file.inFolder("20-Wiki 知识/知识节点/观点"), "📣", if(file.inFolder("20-Wiki 知识/知识节点/案例"), "🏆", if(file.inFolder("20-Wiki 知识/信息来源"), "📄", if(file.inFolder("20-Wiki 知识/主题地图/综合研究"), "💎", "🗺️")))))))))
+  入链数: file.backlinks.length
+  出链数: file.links.length
+  上级文件夹: file.folder.split("/")[-1]
+properties:
+  formula.图标:
+    displayName: " "
+  last_updated:
+    displayName: 更新
+  asked_count:
+    displayName: 被问次数
+  used_in:
+    displayName: 已写成内容
+  stage:
+    displayName: 理解程度
+views:
+  - type: table
+    name: 最近编译
+    order:
+      - formula.图标
+      - file.name
+      - formula.上级文件夹
+      - last_updated
+      - formula.入链数
+    sort:
+      - property: file.mtime
+        direction: DESC
+    limit: 15
+    columnSize:
+      formula.图标: 40
+      file.name: 320
+  - type: table
+    name: 全部知识
+    order:
+      - formula.图标
+      - file.name
+      - formula.上级文件夹
+      - up
+      - formula.入链数
+      - formula.出链数
+      - last_updated
+    sort:
+      - property: file.mtime
+        direction: DESC
+    limit: 300
+  - type: table
+    name: 概念方法
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点/概念方法")
+    order:
+      - file.name
+      - tags
+      - rank
+      - formula.入链数
+      - last_updated
+    sort:
+      - property: rank
+        direction: DESC
+  - type: table
+    name: AI工具
+    filters:
+      or:
+        - file.inFolder("20-Wiki 知识/知识节点/AI工具")
+        - file.inFolder("20-Wiki 知识/知识节点/人物机构")
+    groupBy:
+      property: formula.上级文件夹
+      direction: ASC
+    order:
+      - file.name
+      - tags
+      - formula.入链数
+      - last_updated
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: 行业
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点/行业")
+    order:
+      - stage
+      - file.name
+      - formula.入链数
+      - last_updated
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: 问题库
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点/问题")
+    order:
+      - file.name
+      - asked_by
+      - asked_count
+      - used_in
+      - rank
+    sort:
+      - property: asked_count
+        direction: DESC
+      - property: rank
+        direction: DESC
+  - type: table
+    name: 待写成内容的问题
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点/问题")
+        - used_in.isEmpty()
+    order:
+      - file.name
+      - asked_by
+      - asked_count
+    sort:
+      - property: asked_count
+        direction: DESC
+  - type: table
+    name: 观点
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点/观点")
+    order:
+      - file.name
+      - rank
+      - formula.入链数
+      - created
+    sort:
+      - property: created
+        direction: DESC
+  - type: table
+    name: 案例
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点/案例")
+    order:
+      - file.name
+      - industry
+      - result
+      - desensitized
+      - created
+    sort:
+      - property: created
+        direction: DESC
+  - type: table
+    name: 素材摘要
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/信息来源")
+    order:
+      - file.name
+      - sources
+      - formula.出链数
+      - last_updated
+    sort:
+      - property: file.mtime
+        direction: DESC
+  - type: table
+    name: 综合研究
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/主题地图/综合研究")
+    order:
+      - file.name
+      - sources
+      - last_updated
+    sort:
+      - property: file.mtime
+        direction: DESC
+  - type: table
+    name: 孤岛页面
+    filters:
+      and:
+        - file.inFolder("20-Wiki 知识/知识节点")
+        - file.backlinks.length == 0
+    order:
+      - formula.图标
+      - file.name
+      - formula.上级文件夹
+      - formula.出链数
+    sort:
+      - property: file.name
+        direction: ASC

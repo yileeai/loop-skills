@@ -1,0 +1,16 @@
+filters:
+  and:
+    - file.inFolder("00-Inbox 收件箱")
+    - '!file.name.startsWith("_")'
+views:
+  - type: table
+    name: 收件箱
+    order:
+      - file.name
+      - created
+      - up
+      - related
+    sort:
+      - property: file.ctime
+        direction: DESC
+    limit: 100
